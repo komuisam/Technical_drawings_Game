@@ -365,6 +365,7 @@ class Ruler {
       size: 3,
       color: "blue",
       draggable: false,
+
       //fixed: true,
     });
 
@@ -835,9 +836,13 @@ class DrawingBoard {
   constructor(
     id: string,
     boundingbox: [x1: number, y1: number, x2: number, y2: number] = [
-      -15, 15, 15, -15,
+      -8,
+      10,
+      8,
+      -10, //  -15, 15, 15, -15,
     ]
   ) {
+    console.log(boundingbox);
     const boardRef = document.getElementById(id);
     if (boardRef) {
       this.boardInstance = JXG.JSXGraph.initBoard(id, {
@@ -930,16 +935,14 @@ const Board: React.FC<BoardProps> = ({ id }) => {
   return (
     <div className="base">
       <div className="tools">
-        <button className="toolBotton">{ProtractorSvg}</button>
-        {/* CompassSvg, ProtractorSvg, RulerSvg */}
-        <button className="toolBotton">{RulerSvg}</button>
-        <button className="toolBotton">{CompassSvg}</button>
+        <button className="toolBotton">{<ProtractorSvg />}</button>
+        <button className="toolBotton">{<RulerSvg />}</button>
+        <button className="toolBotton">{<CompassSvg />}</button>
       </div>
-
       <div
-        /* style={{
+        style={{
           backgroundColor: darkMode ? "" : "white",
-        }} */
+        }}
         id={id}
         ref={boardRef}
         className={"jxgboxBoard"}

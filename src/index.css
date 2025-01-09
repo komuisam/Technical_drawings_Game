@@ -87,22 +87,32 @@ button:focus-visible {
   background-color: gray;
   display: flex;
   flex-direction: column;
-  width: 400px;
+  width: 40px;
   border-radius: 8px 0px 0px 8px;
   gap: 4px;
   padding: 3px 1px 3px 1px;
 }
 
 .toolBotton {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  padding: 0;
   width: 38px;
+
   height: 38px;
 
 }
 
 .jxgboxBoard {
   background-color: white;
-  width: "800px";
-  height: "600px";
+  min-width: 900px;
+  min-height: 600px;
+  height: 90%;
+  /*  min-width: 360px;
+  min-height: 560px;
+  height: 90%; */
   border: "3px solid orange";
   border-radius: 0px 8px 8px 0px;
 }
