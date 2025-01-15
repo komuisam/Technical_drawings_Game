@@ -1,5 +1,5 @@
 // src/tools/board.tsx
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import JXG from "jsxgraph";
 import { CompassSvg, ProtractorSvg, RulerSvg } from "../assets/tools";
 interface BoardProps {
@@ -915,22 +915,20 @@ class DrawingBoard {
 }
 
 const Board: React.FC<BoardProps> = ({ id }) => {
+  const [drawingBoard, setdrawingBoard] = useState<DrawingBoard | null>(null);
   const boardRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const drawingBoard = new DrawingBoard(id, [-15, 11, 15, -11]);
-
     // agregar las herramientas
-    drawingBoard.addRuler();
-    //drawingBoard.addProtractor();
-    //drawingBoard.addCompass();
+    if (drawingBoard) {
+      drawingBoard.addRuler();
+      //drawingBoard.addProtractor();
+      //drawingBoard.addCompass();
+    } else {
+      setdrawingBoard(new DrawingBoard(id, [-15, 11, 15, -11]));
+    }
+  }, [id, drawingBoard]);
 
-    // Puedes almacenar el objeto drawingBoard si necesitas acceder a él más tarde
-
-    return () => {
-      // Aquí podrías limpiar o destruir el tablero si es necesario
-    };
-  }, [id]);
   const darkMode = false;
   return (
     <div className="base">
